@@ -44,16 +44,17 @@ echo.
 echo.
 
 :: User choice
-set /p choice=Select, Script=1-#, Refresh=R, Window=W, Quit=0: 
-if /i "%choice%"=="0" goto end
-if /i "%choice%"=="R" goto generateMenu
-if /i "%choice%"=="W" goto changeWindowSize
+set /p choice=Select, Script=1-#, Refresh=R, Window=W, Quit=X: 
+if /i "%choice%"=="x" goto end
+if /i "%choice%"=="r" goto generateMenu
+if /i "%choice%"=="w" goto changeWindowSize
 
 :: Validate choice
 set "selectedScript=!scriptName[%choice%]!"
 if "!selectedScript!"=="" (
-    echo Invalid choice. Try again.
-    pause
+    echo Invalid choice.
+    echo.
+	timeout /t 2 /nobreak >nul
     goto menu
 )
 
@@ -74,13 +75,21 @@ if "!scriptType!"=="PS" (
 
 echo.
 echo ...Script Exited.
-pause
+echo.
 
 :: Return to menu or exit
 echo.
-set /p exitChoice=                 Return to Menu (M) or Exit (E) [M/E]? 
+echo ...Script Exited.
+echo.
+:retryExitChoice
+echo                 Select, Main Menu = M, Exit Program = X
+set /p exitChoice=Option: 
 if /i "%exitChoice%"=="M" goto menu
-goto end
+if /i "%exitChoice%"=="X" goto end
+echo Invalid choice.
+echo.
+timeout /t 2 /nobreak >nul
+goto retryExitChoice
 
 :: Change Window Size
 :changeWindowSize
