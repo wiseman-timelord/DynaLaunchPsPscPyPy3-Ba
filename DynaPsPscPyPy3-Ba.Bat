@@ -2,11 +2,17 @@
 
 :: Initialization
 mode con cols=60 lines=30
-color 0E
 title DynaPsPscPyPy3-Ba
+color 0E
+set cols=60
 echo.
 echo DynaPsPscPyPy3-Ba Started...
 timeout /t 2 /nobreak >nul
+
+:: Artwork
+set "header60====================( DynaPsPscPyPy3-Ba )===================="
+set "header70==========================( DynaPsPscPyPy3-Ba )========================"
+set "header50===============( DynaPsPscPyPy3-Ba )==============="
 
 :: Function to list scripts
 :generateMenu
@@ -31,7 +37,9 @@ if %i%==0 (
 :menu
 cls
 echo.
-echo ===================( DynaPsPscPyPy3-Ba )====================
+if "%cols%"=="60" echo %header60%
+if "%cols%"=="70" echo %header70%
+if "%cols%"=="50" echo %header50%
 echo.
 echo                      Scripts Found: %i%
 echo.
