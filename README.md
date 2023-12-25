@@ -26,7 +26,7 @@ DynaPsPscPyPy3-Ba is an innovative batch script launcher designed to dynamically
                  3. PY: washup.py
 
 
-Select, Script=1-#, Refresh=R, Window=W, Quit=0:
+Select, Script=1-#, Refresh=R, Window=W, Quit=X:
 
 
 
@@ -42,7 +42,7 @@ Select, Script=1-#, Refresh=R, Window=W, Quit=0:
 2. Launch the program by running "DynaPsPscPyPy3-Ba.Bat".
 3. Resize the window to your liking `w`.
 4. Select a script from the menu to execute, or refresh the list if needed.
-5. After the script runs, choose to return to the menu `m` or exit `0`.
+5. After the script runs, choose to return to the menu `m` or exit `x`.
 
 ## Requirements
 - Windows 7/8.1/10/11
