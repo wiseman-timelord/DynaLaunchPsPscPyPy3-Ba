@@ -1,8 +1,8 @@
 @echo off
 
 :: Initialization
-mode con cols=60 lines=35
-color 0E  :: Yellow text
+mode con cols=60 lines=30
+color 0E
 title DynaPsPscPyPy3-Ba
 echo.
 echo DynaPsPscPyPy3-Ba Started...
@@ -44,9 +44,10 @@ echo.
 echo.
 
 :: User choice
-set /p choice=                 Select Script=1-#, Refresh List=R, Quit Program=0: 
+set /p choice=Select, Script=1-#, Refresh=R, Window=W, Quit=0: 
 if /i "%choice%"=="0" goto end
 if /i "%choice%"=="R" goto generateMenu
+if /i "%choice%"=="W" goto changeWindowSize
 
 :: Validate choice
 set "selectedScript=!scriptName[%choice%]!"
@@ -60,19 +61,14 @@ if "!selectedScript!"=="" (
 set "scriptFile=!selectedScript:~4!"
 set "scriptType=!selectedScript:~0,2!"
 
-:: Confirmation before executing
-echo.
-echo                  You selected: !scriptFile!
-set /p confirm=                 Are you sure you want to run this script? [Y/N]: 
-if /i not "%confirm%"=="Y" goto menu
-
 :: Determine script type and execute
 echo.
+echo                  Launching !scriptType! Script: !scriptFile!
+echo.
+timeout /t 2 /nobreak >nul
 if "!scriptType!"=="PS" (
-    echo                  Launching PowerShell Script...
     pwsh.exe -NoProfile -ExecutionPolicy Bypass -File "!scriptFile!" || echo                  PowerShell Core not found, falling back to Windows PowerShell...
 ) else if "!scriptType!"=="PY" (
-    echo                  Launching Python Script...
     python "!scriptFile!" || echo                  Python is not available.
 )
 
@@ -85,6 +81,21 @@ echo.
 set /p exitChoice=                 Return to Menu (M) or Exit (E) [M/E]? 
 if /i "%exitChoice%"=="M" goto menu
 goto end
+
+:: Change Window Size
+:changeWindowSize
+if "%cols%"=="60" (
+    set cols=50
+    set lines=40
+) else if "%cols%"=="50" (
+    set cols=70
+    set lines=30
+) else (
+    set cols=60
+    set lines=30
+)
+mode con cols=%cols% lines=%lines%
+goto menu
 
 :end
 echo.
