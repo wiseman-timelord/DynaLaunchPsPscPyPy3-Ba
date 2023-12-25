@@ -42,19 +42,6 @@ Select Script=1-#, Refresh List=R, Quit Program=0:
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 ```
 
 ## Usage
