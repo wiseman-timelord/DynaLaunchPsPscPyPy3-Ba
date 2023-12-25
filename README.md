@@ -3,6 +3,7 @@
 Status: Working.
 <br> Work planned...
 - Further, testing and refinement, though I can confirm it works with, powershell and python, scripts.
+- Possibly different headers in 30, 40, 20 lines, to fit with window resizing.
 
 ## Description
 DynaPsPscPyPy3-Ba is an innovative batch script launcher designed to dynamically execute PowerShell (`.ps1`) and Python (`.py`) scripts. It is particularly useful for testing and development environments where numerous scripts need to be managed and executed efficiently. This launcher automatically detects scripts in its directory, allowing for a seamless and flexible script execution process. It's ideal for users who need a centralized and streamlined way to run multiple test scripts without manual intervention.
@@ -45,9 +46,9 @@ Select, Script=1-#, Refresh=R, Window=W, Quit=X:
 5. After the script runs, choose to return to the menu `m` or exit `x`.
 
 ## Requirements
-- Windows 7/8.1/10/11
-- PowerShell (Windows PowerShell or PowerShell Core)
-- Python interpreter (for Python scripts)
+- Windows Batch Support
+- PowerShell (Whatever version your target script requires)
+- Python interpreter (Whatever version your target script requires)
 - A folder containing `.ps1` and/or `.py` scripts.
 
 ## Disclaimer
