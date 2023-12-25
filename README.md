@@ -15,6 +15,7 @@ DynaPsPscPyPy3-Ba is an innovative batch script launcher designed to dynamically
 - **Fallback Mechanism**: Defaults to Windows PowerShell if PowerShell Core is not detected.
 - **Error Notification**: Informs the user if the required interpreter (PowerShell or Python) is unavailable.
 - **Post-Execution Options**: Allows users to either return to the main menu or exit the program after script execution.
+- **Window Resizing**: Choose between C60xL30, C50xL40, C70xL20, for optimal displays of scripts.
 
 ## Interface:
 ```
