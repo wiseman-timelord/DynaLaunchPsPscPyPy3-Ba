@@ -38,11 +38,11 @@ Select, Script=1-#, Refresh=R, Window=W, Quit=0:
 ```
 
 ## Usage
-1. Place DynaPsPscPyPy3-Ba in a folder with the, `.ps1` and/or `.py`, scripts you wish to launch.
-2. Run "DynaPsPscPyPy3-Ba.Bat".
-3. From the displayed menu, choose a script to execute or refresh the script list.
-4. Confirm execution when prompted.
-5. After the script runs, choose to return to the menu or exit.
+1. Locate DynaPsPscPyPy3-Ba and your .ps1 or .py scripts in the same folder..
+2. Launch the program by running "DynaPsPscPyPy3-Ba.Bat".
+3. Resize the window to your liking `w`.
+4. Select a script from the menu to execute, or refresh the list if needed.
+5. After the script runs, choose to return to the menu `m` or exit `0`.
 
 ## Requirements
 - Windows 7/8.1/10/11
