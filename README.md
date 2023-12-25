@@ -1,6 +1,8 @@
 # DynaPsPscPyPy3-Ba
 
 Status: Working.
+<br> Work done for next release...
+- Different headers in 50, 60, 70 lines, to fit with window resizing.
 <br> Work planned...
 - Further, testing and refinement, though I can confirm it works with, powershell and python, scripts.
 
