@@ -73,19 +73,16 @@ if "!scriptType!"=="PS" (
     python "!scriptFile!" || echo                  Python is not available.
 )
 
-echo.
-echo ...Script Exited.
-echo.
-
 :: Return to menu or exit
 echo.
 echo ...Script Exited.
 echo.
+timeout /t 2 /nobreak >nul
 :retryExitChoice
 echo                 Select, Main Menu = M, Exit Program = X
 set /p exitChoice=Option: 
-if /i "%exitChoice%"=="M" goto menu
-if /i "%exitChoice%"=="X" goto end
+if /i "%exitChoice%"=="m" goto menu
+if /i "%exitChoice%"=="x" goto end
 echo Invalid choice.
 echo.
 timeout /t 2 /nobreak >nul
