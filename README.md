@@ -8,14 +8,10 @@ Status: Working.
 DynaPsPscPyPy3-Ba is an innovative batch script launcher designed to dynamically execute PowerShell (`.ps1`) and Python (`.py`) scripts. It is particularly useful for testing and development environments where numerous scripts need to be managed and executed efficiently. This launcher automatically detects scripts in its directory, allowing for a seamless and flexible script execution process. It's ideal for users who need a centralized and streamlined way to run multiple test scripts without manual intervention.
 
 ## Features:
-- **Dynamic Script Detection**: Automatically identifies and lists `.ps1` and `.py` files in its directory.
-- **Script Type Identification**: Labels each script as either a PowerShell or Python script for clear distinction.
-- **User-Friendly Interface**: Offers an interactive menu for easy script selection and execution.
-- **Execution Policy Handling**: Bypasses PowerShell execution policies for immediate script running.
-- **Fallback Mechanism**: Defaults to Windows PowerShell if PowerShell Core is not detected.
-- **Error Notification**: Informs the user if the required interpreter (PowerShell or Python) is unavailable.
-- **Post-Execution Options**: Allows users to either return to the main menu or exit the program after script execution.
-- **Window Resizing**: Choose between C60xL30, C50xL40, C70xL20, for optimal displays of scripts.
+- **Script Management**: Dynamically detects and labels `.ps1` and `.py` files in the directory, simplifying script identification and execution.
+- **Enhanced User Interface**: Offers an intuitive, interactive menu with window resizing options (C60xL30, C50xL40, C70xL20) for a better user experience.
+- **Execution Support**: Seamlessly runs scripts, bypassing PowerShell execution policies, and includes fallback to Windows PowerShell if needed.
+- **Efficient Error Handling**: Notifies users about missing interpreters and provides post-execution options for convenience. 
 
 ## Interface:
 ```
