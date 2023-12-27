@@ -47,7 +47,6 @@ echo.
 for /l %%x in (1,1,%i%) do (
     echo               %%x. !scriptName[%%x]!
 )
-
 echo.
 echo.
 
@@ -135,13 +134,13 @@ goto retryExitChoice
 :changeWindowSize
 if "%cols%"=="60" (
     set cols=50
-    set lines=40
+    set lines=50
 ) else if "%cols%"=="50" (
     set cols=70
     set lines=30
 ) else (
     set cols=60
-    set lines=30
+    set lines=40
 )
 mode con cols=%cols% lines=%lines%
 goto menu
