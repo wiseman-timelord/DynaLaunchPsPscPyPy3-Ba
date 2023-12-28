@@ -15,9 +15,10 @@ set "header70==========================( DynaPsPscPyPy3-Ba )====================
 set "header50===============( DynaPsPscPyPy3-Ba )==============="
 
 :: Error and Crash Log Initialization
+if exist "Errors.Log" del "Errors.Log"
+if exist "Crashes.Log" del "Crashes.Log"
 set "ErrorLog=Errors.Log"
 set "CrashLog=Crashes.Log"
-2> "%ErrorLog%" :: Clear Error Log at start
 
 :: Function to list scripts
 :generateMenu
@@ -123,6 +124,10 @@ goto menu
 :end
 echo.
 echo ...Launcher Script Finished.
+echo.
+echo Removing Garbage Files...
+for %%F in ("%ErrorLog%") do if %%~zF EQU 0 del "%ErrorLog%"
+echo ...Garbage Files Deleted.
 echo.
 pause
 
