@@ -9,8 +9,7 @@ DynaPsPscPyPy3-Ba is an innovative batch script launcher designed to dynamically
 ## FEATURES
 - **Script Management**: Dynamically detects and labels `.ps1` and `.py` files in the directory, simplifying script identification and execution.
 - **Enhanced User Interface**: Offers an intuitive, interactive menu with window resizing options (C60xL30, C50xL40, C70xL20) for a better user experience.
-- **Execution Support**: Seamlessly runs scripts, bypassing PowerShell execution policies, and includes fallback to Windows PowerShell if needed.
-- **Efficient Error Handling**: Notifies users about missing interpreters and provides post-execution options for convenience. 
+- **Execution Support**: Seamlessly runs scripts, bypassing execution policies, and prioritizes PWSH/Python3 over PowerShell/Python, if you have them or falling back as required.
 - **Window Resizing**: By pressing `w` on the menu. users can resize the window to some sensible sizes.
 - **Event Logging**: If there are any, errors or crashes, in your script, then they will be outputted to, `Errors.Log` or `Crashes.Log`.   
 
