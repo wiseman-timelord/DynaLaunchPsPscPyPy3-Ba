@@ -15,8 +15,8 @@ set "header70==========================( DynaPsPscPyPy3-Ba )====================
 set "header50===============( DynaPsPscPyPy3-Ba )==============="
 
 :: Error and Crash Log Initialization
-set "ErrorLog=Error.Log"
-set "CrashLog=Crash.Log"
+set "ErrorLog=Errors.Log"
+set "CrashLog=Crashes.Log"
 2> "%ErrorLog%" :: Clear Error Log at start
 
 :: Function to list scripts
