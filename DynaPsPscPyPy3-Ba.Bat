@@ -14,6 +14,11 @@ set "header60====================( DynaPsPscPyPy3-Ba )===================="
 set "header70==========================( DynaPsPscPyPy3-Ba )========================"
 set "header50===============( DynaPsPscPyPy3-Ba )==============="
 
+:: Error and Crash Log Initialization
+set "ErrorLog=Error.Log"
+set "CrashLog=Crash.Log"
+2> "%ErrorLog%" :: Clear Error Log at start
+
 :: Function to list scripts
 :generateMenu
 set i=0
@@ -75,45 +80,15 @@ echo Launching !scriptType! Script: !scriptFile!
 echo.
 timeout /t 2 /nobreak >nul
 if "!scriptType!"=="PS" (
-    where pwsh >nul 2>&1 && (
-        echo Pwsh Found, Using Pwsh...
-        echo.
-		timeout /t 2 /nobreak >nul
-        pwsh.exe -NoProfile -ExecutionPolicy Bypass -File "!scriptFile!"
-    ) || (
-        where powershell >nul 2>&1 && (
-            echo Pwsh Missing, Using Powershell...
-            echo.
-			timeout /t 2 /nobreak >nul
-            powershell.exe -NoProfile -ExecutionPolicy Bypass -File "!scriptFile!"
-        ) || (
-            echo Powershell Missing, Critical Error!
-            echo.
-			timeout /t 2 /nobreak >nul
-            goto end
-        )
-    )
+    call :launchPSScript "!scriptFile!"
 ) else if "!scriptType!"=="PY" (
-    where python3 >nul 2>&1 && (
-        echo Python3 Found, Using Python3...
-        echo.
-		timeout /t 2 /nobreak >nul
-        python3 "!scriptFile!"
-    ) || (
-        where python >nul 2>&1 && (
-            echo Python3 Missing, Using Python...
-            echo.
-			timeout /t 2 /nobreak >nul
-            python "!scriptFile!"
-        ) || (
-            echo Python Missing, Critical Error!
-            echo.
-			timeout /t 2 /nobreak >nul
-            goto end
-        )
-    )
+    call :launchPythonScript "!scriptFile!"
 )
 
+:: Check for script crash
+if errorlevel 1 (
+    echo [%date% %time%] Script crashed with error code %errorlevel% >> "%CrashLog%"
+)
 
 :: Return to menu or exit
 echo.
@@ -150,3 +125,20 @@ echo.
 echo ...Launcher Script Finished.
 echo.
 pause
+
+:: Functions to launch scripts
+:launchPSScript
+where pwsh >nul 2>&1 && (
+    pwsh.exe -NoProfile -ExecutionPolicy Bypass -File "%~1" 2>> "%ErrorLog%"
+) || (
+    powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%~1" 2>> "%ErrorLog%"
+)
+exit /b %errorlevel%
+
+:launchPythonScript
+where python3 >nul 2>&1 && (
+    python3 "%~1" 2>> "%ErrorLog%"
+) || (
+    python "%~1" 2>> "%ErrorLog%"
+)
+exit /b %errorlevel%
