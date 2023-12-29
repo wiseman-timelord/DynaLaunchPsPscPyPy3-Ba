@@ -57,7 +57,7 @@ echo.
 echo.
 
 :: User choice
-set /p choice=Select, Script=1-#, Refresh=R, Window=W, Quit=X: 
+set /p choice=Select, Script=1-#, Refresh=R, Window=W, Exit=X: 
 if /i "%choice%"=="x" goto end
 if /i "%choice%"=="r" goto generateMenu
 if /i "%choice%"=="w" goto changeWindowSize
@@ -92,13 +92,10 @@ if errorlevel 1 (
 )
 
 :: Return to menu or exit
-echo.
 echo ...Script Exited.
 echo.
-timeout /t 2 /nobreak >nul
-:retryExitChoice
-echo Select, Main Menu = M, Exit Program = X
-set /p exitChoice=Option: 
+<nul set /p "=Select, Main Menu = M, Exit Program = X: "
+set /p exitChoice=
 if /i "%exitChoice%"=="m" goto menu
 if /i "%exitChoice%"=="x" goto end
 echo Invalid choice.
