@@ -35,6 +35,7 @@ for %%f in (*.ps1, *.py) do (
 )
 
 if %i%==0 (
+    echo.
     echo No .Ps1/.Py Scripts Found!
     timeout /t 2 /nobreak >nul
     goto end
