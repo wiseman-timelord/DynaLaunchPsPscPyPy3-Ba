@@ -8,6 +8,7 @@ set cols=60
 echo.
 echo DynaPsPscPyPy3-Ba Started...
 timeout /t 2 /nobreak >nul
+set "scriptDir=%~dp0"
 
 :: Artwork
 set "header60====================( DynaPsPscPyPy3-Ba )===================="
@@ -57,10 +58,11 @@ echo.
 echo.
 
 :: User choice
-set /p choice=Select, Script=1-#, Refresh=R, Window=W, Exit=X: 
+set /p choice=Select, Script=1-#, Admin=A, Refresh=R, Window=W, Exit=X: 
 if /i "%choice%"=="x" goto end
 if /i "%choice%"=="r" goto generateMenu
 if /i "%choice%"=="w" goto changeWindowSize
+if /i "%choice%"=="a" goto getAdmin
 
 :: Validate choice
 set "selectedScript=!scriptName[%choice%]!"
@@ -127,6 +129,19 @@ for %%F in ("%ErrorLog%") do if %%~zF EQU 0 del "%ErrorLog%"
 echo ...Garbage Files Deleted.
 echo.
 pause
+
+:: Get Admin
+:getAdmin
+echo Gaining Admin...
+net session >nul 2>&1
+if %errorlevel% == 0 (
+    echo ...Admin Success.
+    timeout /t 2 /nobreak >nul
+    goto menu
+) else (
+    powershell -Command "Start-Process cmd.exe -ArgumentList '/c cd /d %scriptDir% && %~f0 && exit' -Verb runAs" >nul 2>&1
+    exit
+)
 
 :: Functions to launch scripts
 :launchPSScript
