@@ -39,9 +39,9 @@ Select, Script=1-#, Refresh=R, Window=W, Quit=X:
 ```
 
 ## USAGE
-1. Locate DynaPsPscPyPy3-Ba and your .ps1 or .py scripts in the same folder..
+1. Locate DynaPsPscPyPy3-Ba and your .ps1 or .py scripts in the same folder.
 2. Launch the program by running "DynaPsPscPyPy3-Ba.Bat".
-3. Resize the window to your liking `w`.
+3. As required, resize the window `w` and request Admin rights `a`.
 4. Select a script from the menu to execute, or refresh the list if needed.
 5. After the script runs, choose to return to the menu `m` or exit `x`.
 
@@ -52,7 +52,9 @@ Select, Script=1-#, Refresh=R, Window=W, Quit=X:
 - A folder containing `.ps1` and/or `.py` scripts.
 
 ## NOTATION
-Whatever you are intending to use, Pwsh, Powershell, Python3, Python, it must be on the system path in order to work.
+-Whatever you are intending to use, Pwsh, Powershell, Python3, Python, it must be on the system path in order to work.
+-Do not release my full batch in your release, the idea is you make a simpler batch launcher for your release.
+-Keep DynaPsPscPyPy3-Ba in a folder on its own alongside other folders containing scripts for developing, copy-paste it where needed.
 
 ## DISCLAIMER
 This program is provided "as is" without warranties or support. Users are responsible for the content they, download and use, as well as, any resulting damage to, hardware or sanity.
