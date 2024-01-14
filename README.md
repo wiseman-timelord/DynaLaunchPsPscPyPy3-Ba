@@ -57,4 +57,4 @@ Select, Script=1-#, Refresh=R, Window=W, Quit=X:
 -Keep DynaPsPscPyPy3-Ba in a folder on its own alongside other folders containing scripts for developing, copy-paste it where needed.
 
 ### DISCLAIMER
-This program is provided "as is" without warranties or support. Users are responsible for the content they, download and use, as well as, any resulting damage to, hardware or sanity.
+Read "License.Txt", its, what its there for and why its supplied with the package.
