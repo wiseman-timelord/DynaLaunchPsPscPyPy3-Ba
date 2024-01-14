@@ -56,5 +56,5 @@ Select, Script=1-#, Refresh=R, Window=W, Quit=X:
 -Do not release my full batch in your release, the idea is you make a simpler batch launcher for your release.
 -Keep DynaPsPscPyPy3-Ba in a folder on its own alongside other folders containing scripts for developing, copy-paste it where needed.
 
-### DISCLAIMER
-Read "License.Txt", its, what its there for and why its supplied with the package.
+## DISCLAIMER
+The "License.Txt" covers, this and relating, stuff.
