@@ -2,9 +2,9 @@
 
 :: Initialization
 mode con cols=60 lines=30
-title PsPyRunner-Ba
-color 0E
 set cols=60
+title PsPyRunner-Ba
+color 80
 set "scriptDir=%~dp0"
 echo.
 echo PsPyRunner-Ba Started...
@@ -52,6 +52,7 @@ if "%cols%"=="60" echo %header60%
 if "%cols%"=="70" echo %header70%
 if "%cols%"=="50" echo %header50%
 echo.
+echo.
 echo                      Scripts Found: %i%
 echo.
 
@@ -97,17 +98,12 @@ if errorlevel 1 (
     echo [%date% %time%] Script crashed with error code %errorlevel% >> "%CrashLog%"
 )
 
-:: Return to menu or exit
+:: Return to menu
+echo.
 echo ..Script Exited.
 echo.
-<nul set /p "=Select, Main Menu = M, Exit Program = X: "
-set /p exitChoice=
-if /i "%exitChoice%"=="m" goto menu
-if /i "%exitChoice%"=="x" goto EoF
-echo Invalid choice.
-echo.
-timeout /t 2 /nobreak >nul
-goto retryExitChoice
+pause
+goto menu
 
 :: Change Window Size
 :changeWindowSize
@@ -157,6 +153,6 @@ exit /b %errorlevel%
 :: Exit
 :EoF
 echo.
-echo ...Launcher Script Finished.
+echo ...Exit Process Initiated.
 echo.
-pause
+timeout /t 5 /nobreak >nul
