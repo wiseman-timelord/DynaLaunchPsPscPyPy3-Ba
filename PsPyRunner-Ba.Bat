@@ -83,6 +83,7 @@ set "scriptFile=!selectedScript:~4!"
 set "scriptType=!selectedScript:~0,2!"
 
 :: Determine script type and execute
+cls
 echo.
 echo Launching !scriptType! Script: !scriptFile!
 echo.
