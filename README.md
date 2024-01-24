@@ -4,7 +4,7 @@
 Working. It has been re-visited twice, and is somewhat perfected.
 
 ### DESCRIPTION
-PsPyRunner-Ba is an innovative batch script launcher designed to dynamically PsPyRunner PowerShell (`.ps1`) and Python (`.py`) scripts. It is particularly useful for testing and development environments where numerous scripts need to be managed and PsPyRunnerd efficiently. This launcher automatically detects scripts in its directory, allowing for a seamless and flexible script execution process. It's ideal for users who need a centralized and streamlined way to run multiple test scripts without manual intervention. "But I know how to launch a powershell/python file, why would I use this?", well it saves, time and effort, and, you can keep your own launcher batch vanilla.
+PsPyRunner-Ba is an innovative batch script launcher designed to dynamically, find, present menu with, and launch, upon PowerShell (`.ps1`) and Python (`.py`), scripts in the same directory. It is particularly useful for testing and development environments where numerous scripts need to be managed and PsPyRunnerd efficiently, and there is currently no batch launcher written. This launcher automatically detects scripts in its directory, allowing for a seamless and flexible script execution process. It's ideal for users who need a centralized and streamlined way to run multiple test scripts without manual intervention. "But I know how to launch a powershell/python file, why would I use this?", well it saves, time and effort, and, you can, keep your own launcher batch vanilla or create your own program specific launcer later.
 
 ### FEATURES
 - **Script Management**: Dynamically detects and labels `.ps1` and `.py` files in the directory, simplifying script identification and execution.
@@ -15,20 +15,38 @@ PsPyRunner-Ba is an innovative batch script launcher designed to dynamically PsP
 - **Event Logging**: If there are any, errors or crashes, in your script, then they will be outputted to, `Errors.Log` or `Crashes.Log`.   
 
 ### INTERFACE
+- The main menu...
 ```
 
-===================( PsPyRunner-Ba )====================
+=====================( PsPyRunner-Ba )======================
 
 
-                     Scripts Found: 3
+                     Scripts Found: 1
 
-                 1. PY: ascii.py
-                 2. PY: main.py
-                 3. PY: washup.py
+              1. PS: test.ps1
 
 
-Select, Script=1-#, Refresh=R, Window=W, Quit=X:
+Select, Script=1-#, Admin=A, Refresh=R, Window=W, Exit=X:
 
+
+
+
+
+
+
+
+```
+- Example usage (after pressing key it returns to menu)...
+```
+
+Launching PS Script: test.ps1
+
+==== Monitoring Panel ====
+Transfer Rates:Inbound - 0 KB/sOutbound - 0 KB/s
+
+..Script Exited.
+
+Press any key to continue . . .
 
 
 
