@@ -89,9 +89,9 @@ echo Launching !scriptType! Script: !scriptFile!
 echo.
 timeout /t 2 /nobreak >nul
 if "!scriptType!"=="PS" (
-    call :launchPSScript "!scriptFile!"
+    call :runPSScript "!scriptFile!"
 ) else if "!scriptType!"=="PY" (
-    call :launchPythonScript "!scriptFile!"
+    call :runPyScript "!scriptFile!"
 )
 
 :: Check for script crash
@@ -135,7 +135,7 @@ if %errorlevel% == 0 (
 )
 
 :: Functions to launch scripts
-:launchPSScript
+:runPSScript
 where pwsh >nul 2>&1 && (
     pwsh.exe -NoProfile -ExecutionPolicy Bypass -File "%~1" 2>> "%ErrorLog%"
 ) || (
@@ -143,7 +143,7 @@ where pwsh >nul 2>&1 && (
 )
 exit /b %errorlevel%
 
-:launchPythonScript
+:runPyScript
 where python3 >nul 2>&1 && (
     python3 "%~1" 2>> "%ErrorLog%"
 ) || (
