@@ -1,10 +1,10 @@
-# PsPyRunner-Ba
+# PsPyRunner
 
 ### STATUS: 
 Working. It has been re-visited twice, and is somewhat perfected.
 
 ### DESCRIPTION
-PsPyRunner-Ba is an innovative batch script launcher designed to dynamically, find, present menu with, and launch, upon PowerShell (`.ps1`) and Python (`.py`), scripts in the same directory. It is particularly useful for testing and development environments where numerous scripts need to be managed and PsPyRunnerd efficiently, and there is currently no batch launcher written. This launcher automatically detects scripts in its directory, allowing for a seamless and flexible script execution process. It's ideal for users who need a centralized and streamlined way to run multiple test scripts without manual intervention. "But I know how to launch a powershell/python file, why would I use this?", well it saves, time and effort, and, you can, keep your own launcher batch vanilla or create your own program specific launcer later.
+PsPyRunner is an innovative batch script launcher designed to dynamically, find, present menu with, and launch, upon PowerShell (`.ps1`) and Python (`.py`), scripts in the same directory. It is particularly useful for testing and development environments where numerous scripts need to be managed and PsPyRunnerd efficiently, and there is currently no batch launcher written. This launcher automatically detects scripts in its directory, allowing for a seamless and flexible script execution process. It's ideal for users who need a centralized and streamlined way to run multiple test scripts without manual intervention. "But I know how to launch a powershell/python file, why would I use this?", well it saves, time and effort, and, you can, keep your own launcher batch vanilla or create your own program specific launcer later.
 
 ### FEATURES
 - **Script Management**: Dynamically detects and labels `.ps1` and `.py` files in the directory, simplifying script identification and execution.
@@ -18,7 +18,7 @@ PsPyRunner-Ba is an innovative batch script launcher designed to dynamically, fi
 - The main menu...
 ```
 
-=====================( PsPyRunner-Ba )======================
+=====================( PsPyRunner )======================
 
 
                      Scripts Found: 1
@@ -57,8 +57,8 @@ Press any key to continue . . .
 ```
 
 ### USAGE
-1. Locate PsPyRunner-Ba and your .ps1 or .py scripts in the same folder.
-2. Launch the program by running "PsPyRunner-Ba.Bat".
+1. Locate PsPyRunner and your .ps1 or .py scripts in the same folder.
+2. Launch the program by running "PsPyRunner.Bat".
 3. As required, resize the window `w` and request Admin rights `a`.
 4. Select a script from the menu to PsPyRunner, or refresh the list if needed.
 5. After the script runs, choose to return to the menu `m` or exit `x`.
@@ -72,7 +72,7 @@ Press any key to continue . . .
 ### NOTATION
 -Whatever you are intending to use, Pwsh, Powershell, Python3, Python, it must be on the system path in order to work.
 -Do not release my full batch in your release, the idea is you make a simpler batch launcher for your release.
--Keep PsPyRunner-Ba in a folder on its own alongside other folders containing scripts for developing, copy-paste it where needed.
+-Keep PsPyRunner in a folder on its own alongside other folders containing scripts for developing, copy-paste it where needed.
 
 ## DISCLAIMER
 This software is subject to the terms in License.Txt, covering usage, distribution, and modifications. For full details on your rights and obligations, refer to License.Txt.
