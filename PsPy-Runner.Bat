@@ -88,7 +88,7 @@ for /l %%x in (1,1,%i%) do (
 )
 echo.
 call :displaySeparator
-set /p choice=Selection; Script Options (1-%i%), Refresh List (R), Exit_Runner (X): 
+set /p choice=Selection; Script Options = 1-%i%, Refresh List = R, Exit Runner = X: 
 
 if /i "%choice%"=="x" goto end_of_script
 if /i "%choice%"=="r" goto generateMenu
@@ -158,7 +158,7 @@ if defined PYTHON_EXE_TO_USE (
     goto :eof
 )
 :promptPythonVersion
-set /p pythonVersion=Python Version for the Session? (eg, 311 = Python v3.11): 
+set /p pythonVersion=Python Version for the Session? (eg, 39, 311): 
 :searchPythonVersion
 echo Searching for %pythonVersion%...
 for %%d in ("C:\Program Files\Python%pythonVersion%" "%LocalAppData%\Programs\Python\Python%pythonVersion%") do (
