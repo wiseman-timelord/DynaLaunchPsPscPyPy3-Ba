@@ -8,6 +8,7 @@ set "ScriptDirectory=%ScriptDirectory:~0,-1%"
 set "selectedScript="
 set "selectedFile="
 set "selectedType="
+set "PYTHON_EXE_TO_USE="
 
 :: Check Admin
 net session >nul 2>&1
@@ -19,7 +20,7 @@ if %errorLevel% NEQ 0 (
 )
 goto :startup_sequence
 
-:: Display banner function
+:: Display Banner
 :displayBanner
 cls
 echo ========================================================================================================================
@@ -29,11 +30,17 @@ echo.
 timeout /t 1 /nobreak >nul
 goto :eof
 
+:: Display Separator
+:displaySeparator
+echo.
+echo ========================================================================================================================
+goto :eof
+
 :: Startup Sequence
 :startup_sequence
 cd /d "%ScriptDirectory%"
 call :displayBanner
-echo Status: Admin
+echo Status: Administrator
 timeout /t 1 /nobreak >nul
 cd /d "%ScriptDirectory%"
 echo Working Dir: %ScriptDirectory%
@@ -43,59 +50,13 @@ timeout /t 1 /nobreak >nul
 echo Removing Old Logs...
 if exist "%ScriptDirectory%Errors.Log" del "%ScriptDirectory%Errors.Log"
 if exist "%ScriptDirectory%Crashes.Log" del "%ScriptDirectory%Crashes.Log"
-echo Old Logs Deleted.
 set "ErrorLog=%ScriptDirectory%Errors.Log"
 set "CrashLog=%ScriptDirectory%Crashes.Log"
+echo Old Logs Deleted.
+timeout /t 1 /nobreak >nul
 
 :: Startup Done
-goto :menu
-
-:: Main Menu
-:menu
-call :displayBanner
-call :generateMenu
-echo     Scripts Found: %i%
-echo.
-for /l %%x in (1,1,%i%) do (
-    echo         %%x. !scriptName[%%x]!
-)
-echo.
-
-:: User choice
-echo ========================================================================================================================
-set /p choice=Selection; Script Options (1-%i%), Refresh List (R), Exit_Runner (X): 
-if /i "%choice%"=="x" goto end_of_script
-if /i "%choice%"=="r" goto generateMenu
-
-:: Validate choice
-if "%choice%" geq "1" if "%choice%" leq "%i%" (
-    set "selectedScript=!scriptName[%choice%]!"
-    set "scriptFile=!selectedScript:~4!"
-    set "scriptType=!selectedScript:~0,2!"
-
-    call :displayBanner
-    echo Launching !scriptType! Script: !scriptFile!
-    timeout /t 2 /nobreak >nul
-
-    if "!scriptType!"=="PS" (
-        call :runPSScript ".\!scriptFile!"
-    ) else if "!scriptType!"=="PY" (
-        call :selectPythonVersion
-        call :runPyScript ".\!scriptFile!"
-    )
-
-    if errorlevel 1 (
-        echo [%date% %time%] Script crashed with error code %errorlevel% >> "%CrashLog%"
-    )
-
-    echo Script Exited.
-    pause
-    goto :menu
-) else (
-    echo Invalid choice.
-    timeout /t 2 /nobreak >nul
-    goto :menu
-)
+goto :main_menu
 
 :: List scripts
 :generateMenu
@@ -115,14 +76,55 @@ if %i%==0 (
 )
 goto :eof
 
+:: Main Menu
+:main_menu
+call :displayBanner
+call :generateMenu
+echo.
+echo     Scripts Found: %i%
+echo.
+for /l %%x in (1,1,%i%) do (
+    echo         %%x. !scriptName[%%x]!
+)
+echo.
+call :displaySeparator
+set /p choice=Selection; Script Options (1-%i%), Refresh List (R), Exit_Runner (X): 
+
+if /i "%choice%"=="x" goto end_of_script
+if /i "%choice%"=="r" goto generateMenu
+
+:: Validate choice
+if "%choice%" geq "1" if "%choice%" leq "%i%" (
+    set "selectedScript=!scriptName[%choice%]!"
+    set "scriptFile=!selectedScript:~4!"
+    set "scriptType=!selectedScript:~0,2!"
+    echo Launching !scriptType! Script: !scriptFile!
+	timeout /t 2 /nobreak >nul
+	call :displayBanner
+
+    if "!scriptType!"=="PS" (
+        call :runPSScript ".\!scriptFile!"
+    ) else if "!scriptType!"=="PY" (
+        call :selectPythonVersion
+        call :runPyScript ".\!scriptFile!"
+    )
+
+    if errorlevel 1 (
+        echo [%date% %time%] Script crashed with error code %errorlevel% >> "%CrashLog%"
+		timeout /t 3 /nobreak >nul
+		
+    )
+    pause
+    goto :main_menu
+) else (
+    echo Invalid choice.
+    timeout /t 2 /nobreak >nul
+    goto :main_menu
+)
+
 :: Functions to launch scripts
 :runPSScript
 echo Attempting to run: "%~1"
-if not exist "%~1" (
-    echo Error: Script file not found.
-    echo Path: "%~1"
-    goto :eof
-)
 where pwsh >nul 2>&1
 if %errorlevel% equ 0 (
     echo Executing with PowerShell Core...
@@ -142,60 +144,47 @@ if %errorlevel% equ 0 (
     )
 )
 if %errorlevel% neq 0 (
-    echo Error occurred while executing PowerShell script.
+    echo Error: PowerShell script Execution.
     timeout /t 3 /nobreak >nul
     echo Exit code: %errorlevel%
 )
 goto :eof
 
+:: Function to select Python version
+:selectPythonVersion
+if defined PYTHON_EXE_TO_USE (
+    echo Using Python %PYTHON_EXE_TO_USE%.
+	timeout /t 1 /nobreak >nul
+    goto :eof
+)
+:promptPythonVersion
+set /p pythonVersion=Python Version for the Session? (eg, 311 = Python v3.11): 
+:searchPythonVersion
+echo Searching for %pythonVersion%...
+for %%d in ("C:\Program Files\Python%pythonVersion%" "%LocalAppData%\Programs\Python\Python%pythonVersion%") do (
+    if exist "%%~d\python.exe" (
+        set "PYTHON_EXE_TO_USE=%%~d\python.exe"
+        echo Found Python%PYTHON_EXE_TO_USE%
+		timeout /t 1 /nobreak >nul
+        goto :eof
+    )
+)
+echo Missing: Python%pythonVersion%!
+timeout /t 3 /nobreak >nul
+goto :promptPythonVersion
+
+:: Run the Python script
 :runPyScript
 if not defined PYTHON_EXE_TO_USE (
     echo No Python version selected.
     timeout /t 3 /nobreak >nul
     goto :eof
 )
-echo Attempting to run: "%~1" with !PYTHON_EXE_TO_USE!
-!PYTHON_EXE_TO_USE! "%~1" 2>> "%ErrorLog%"
-exit /b %errorlevel%
-
-:: Function to select Python version
-:selectPythonVersion
-call :displayBanner
-call :listPythonVersions
-echo.
-set /p choice=Selection; Python Options (1-%i%), Back to Menu (M): 
-if /i "%choice%"=="m" goto :menu
-
-:: Validate choice
-if "%choice%" geq "1" if "%choice%" leq "%i%" (
-    set "PYTHON_EXE_TO_USE=!pythonPath[%choice%]!"
-    echo Selected Python version: !PYTHON_EXE_TO_USE!
-    timeout /t 2 /nobreak >nul
-) else (
-    echo Invalid choice.
-    timeout /t 2 /nobreak >nul
-    goto :selectPythonVersion
-)
-goto :eof
-
-:: Function to list available Python versions
-:listPythonVersions
-set i=0
-for /l %%v in (35,1,45) do (
-    for %%d in ("C:\Program Files\Python%%v\" "%LocalAppData%\Programs\Python\Python%%v\") do (
-        if exist "%%~d\python.exe" (
-            set /a i+=1
-            set "pythonPath[!i!]=%%~d\python.exe"
-            echo         !i!. Python%%v\python.exe
-        )
-    )
-)
-if %i%==0 (
-    echo No Python versions found.
-    timeout /t 3 /nobreak >nul
-    goto :menu
-)
-goto :eof
+echo Running "%~1" with %PYTHON_EXE_TO_USE%...
+%PYTHON_EXE_TO_USE% "%~1" 2>> "%ErrorLog%"
+echo ...Python Script Ended.
+timeout /t 2 /nobreak >nul
+goto :main_menu
 
 :: Exit
 :end_of_script

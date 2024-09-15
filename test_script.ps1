@@ -1,6 +1,6 @@
 # Function to get CPU information
 function Get-CPUInfo {
-    $cpuInfo = Get-WmiObject Win32_Processor
+    $cpuInfo = Get-CimInstance Win32_Processor
     Write-Host "`nCPU Information:"
     Write-Host "  Physical cores: $($cpuInfo.NumberOfCores)"
     Write-Host "  Total cores: $($cpuInfo.NumberOfLogicalProcessors)"
@@ -11,21 +11,29 @@ function Get-CPUInfo {
 
 # Function to get memory information
 function Get-MemoryInfo {
-    $memoryInfo = Get-WmiObject Win32_OperatingSystem
+    $memoryInfo = Get-CimInstance Win32_OperatingSystem
     $totalMemory = [math]::Round($memoryInfo.TotalVisibleMemorySize / 1MB, 2)
     $freeMemory = [math]::Round($memoryInfo.FreePhysicalMemory / 1MB, 2)
-    $usedMemory = $totalMemory - $freeMemory
-    $memoryPercentUsed = [math]::Round(($usedMemory / $totalMemory) * 100, 2)
-    Write-Host "`nMemory Information:"
-    Write-Host "  Total: $totalMemory GB"
-    Write-Host "  Available: $freeMemory GB"
-    Write-Host "  Used: $usedMemory GB"
-    Write-Host "  Percentage Used: $memoryPercentUsed%"
+    if ($totalMemory -eq 0) {
+        Write-Host "`nMemory Information:"
+        Write-Host "  Total: 0 GB"
+        Write-Host "  Available: 0 GB"
+        Write-Host "  Used: 0 GB"
+        Write-Host "  Percentage Used: %"
+    } else {
+        $usedMemory = $totalMemory - $freeMemory
+        $memoryPercentUsed = [math]::Round(($usedMemory / $totalMemory) * 100, 2)
+        Write-Host "`nMemory Information:"
+        Write-Host "  Total: $totalMemory GB"
+        Write-Host "  Available: $freeMemory GB"
+        Write-Host "  Used: $usedMemory GB"
+        Write-Host "  Percentage Used: $memoryPercentUsed%"
+    }
 }
 
 # Function to get disk information
 function Get-DiskInfo {
-    $diskInfo = Get-WmiObject Win32_LogicalDisk -Filter "DriveType=3"
+    $diskInfo = Get-CimInstance Win32_LogicalDisk -Filter "DriveType=3"
     Write-Host "`nDisk Information:"
     foreach ($disk in $diskInfo) {
         $totalSize = [math]::Round($disk.Size / 1GB, 2)
@@ -42,7 +50,7 @@ function Get-DiskInfo {
 
 # Function to get network information
 function Get-NetworkInfo {
-    $networkInfo = Get-WmiObject Win32_NetworkAdapterConfiguration | Where-Object { $_.IPEnabled -eq $true }
+    $networkInfo = Get-CimInstance Win32_NetworkAdapterConfiguration | Where-Object { $_.IPEnabled -eq $true }
     Write-Host "`nNetwork Information:"
     Write-Host "  Hostname: $(hostname)"
     foreach ($adapter in $networkInfo) {
@@ -54,7 +62,7 @@ function Get-NetworkInfo {
 
 # Function to get OS information
 function Get-OSInfo {
-    $osInfo = Get-WmiObject Win32_OperatingSystem
+    $osInfo = Get-CimInstance Win32_OperatingSystem
     Write-Host "`nOS Information:"
     Write-Host "  System: $($osInfo.Caption)"
     Write-Host "  Version: $($osInfo.Version)"
