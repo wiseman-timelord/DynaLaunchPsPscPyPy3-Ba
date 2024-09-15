@@ -60,11 +60,6 @@ Disk Information:
     Free: 57.99 GB
     Percentage Used: 75.62%
  ...
-  Device: R:
-    Total Size: 4 GB
-    Used: 0.41 GB
-    Free: 3.59 GB
-    Percentage Used: 10.25%
 
 Network Information:
   Hostname: DESKTOP-8UON8ODUaOS
