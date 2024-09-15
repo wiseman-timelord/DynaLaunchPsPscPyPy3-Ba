@@ -26,7 +26,7 @@ PsPy-Runner is an innovative batch script launcher designed to dynamically, find
 
 
 ========================================================================================================================
-Selection; Script Options (1-2), Refresh List (R), Exit_Runner (X):
+Selection; Script Options = 1-2, Refresh List = R, Exit_Runner =X:
 
 
 ```
