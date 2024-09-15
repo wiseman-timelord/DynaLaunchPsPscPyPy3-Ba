@@ -1,5 +1,5 @@
 # PsPy-Runner
-Status: Working - Revisited on 202409 
+Status: Working - Revisited on 202409, much was overhauled. 
 
 ### DESCRIPTION
 PsPy-Runner is an innovative batch script launcher designed to dynamically, find, present menu with, and launch, upon PowerShell (`.ps1`) and Python (`.py`), scripts in the same directory. It is particularly useful for testing and development environments where numerous scripts need to be managed and run efficiently. This launcher automatically detects scripts in its directory, allowing for a seamless and flexible script execution process. It's ideal for users who need a centralized and streamlined way to run multiple test scripts without manual intervention, but with appropriate logging for any error output.
@@ -84,23 +84,21 @@ Press Enter to exit...
 
 ```
 
+## REQUIREMENTS
+- Batch Support - The launcher is Windows Batch, ensure scripting host is enabled. 
+- Pwsh/PowerShell - Either one will do, depends what your scripts are programmed towards.
+- Python - Whatever version you need for the script, it should be installed to 1 of the 2 default install options.
+- The, `.ps1` and/or `.py`, scripts, that you intend to test/run, or you can just run the examples, if ye want.
+
 ### USAGE
 1. Locate PsPyRunner and your .ps1 or .py scripts in the same folder.
 2. Launch the program by running "PsPyRunner.Bat".
-3. As required, resize the window `w` and request Admin rights `a`.
-4. Select a script from the menu to PsPyRunner, or refresh the list if needed.
-5. After the script runs, choose to return to the menu `m` or exit `x`.
-
-### REQUIREMENTS
-- Windows Batch Support
-- Pwsh/PowerShell (As are compatible with scripts)
-- Python3/Python (As are compatible with scripts)
-- A folder containing `.ps1` and/or `.py` scripts.
+4. Select a script from the menu to PsPyRunner, or drop in new script to run and refresh the list.
+5. After the script runs, you will be prompted to return to the menu by hitting enter.
 
 ### NOTATION
--Whatever you are intending to use, Pwsh, Powershell, Python3, Python, it must be on the system path in order to work.
--Do not release my full batch in your release, the idea is you make a simpler batch launcher for your release.
--Keep PsPyRunner in a folder on its own alongside other folders containing scripts for developing, copy-paste it where needed.
+- Python scripts will ask for a python version you are working with the first time, then remember it for the session.
+- For PowerShell and PowerShell Core, it must be on the system path in order to work.
 
 ## DISCLAIMER
 This software is subject to the terms in License.Txt, covering usage, distribution, and modifications. For full details on your rights and obligations, refer to License.Txt.
