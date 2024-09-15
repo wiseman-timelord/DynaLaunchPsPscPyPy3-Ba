@@ -91,9 +91,9 @@ Press Enter to exit...
 - The, `.ps1` and/or `.py`, scripts, that you intend to test/run, or you can just run the examples, if ye want.
 
 ### USAGE
-1. Locate PsPyRunner and your .ps1 or .py scripts in the same folder.
-2. Launch the program by running "PsPyRunner.Bat".
-4. Select a script from the menu to PsPyRunner, or drop in new script to run and refresh the list.
+1. Locate `PsPy-Runner.Bat` and your `.ps1` or `.py` scripts in the same folder.
+2. Launch the program by running `PsPy-Runner.Bat`.
+4. Select a script from the menu to `PsPy-Runner.Bat`, or drop in new script to run and refresh the list.
 5. After the script runs, you will be prompted to return to the menu by hitting enter.
 
 ### NOTATION
